@@ -44,16 +44,16 @@ parser.on('end', () => {
 
 	fs.writeFile(`out/${fileName}.json`, JSON.stringify(personMap, null, '\t'), () => {})
 
-	sb.appendLine(`
-digraph "mohs" {
+	sb.appendLine(
+`digraph "mohs" {
 	graph [
 		charset = "UTF-8";
 		label = "Mohs Family Tree",
 		labelloc = "t",
 		labeljust = "c",
 		bgcolor = white
-		fontcolor = blue,
-		fontsize = 18,
+		fontcolor = "#ffeb85",
+		fontsize = 24,
 		style = "filled",
 		rankdir = LR,
 		margin = 0.2,
@@ -66,10 +66,10 @@ digraph "mohs" {
 		colorscheme = "rdylgn11"
 		style = "solid,filled",
 		fontsize = 16,
-		fontcolor = blue,
+		fontcolor = "#ffeb85",
 		fontname = "Migu 1M",
-		color = lightgray,
-		fillcolor = lightgray,
+		color = 7,
+		fillcolor = 11,
 		fixedsize = true,
 		height = 0.8,
 		width = 3.0
