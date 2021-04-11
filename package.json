@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node index.js > out/mohs.dot",
-    "publish": "dot -Tsvg -o out/mohs.svg out/mohs.dot"
+    "start": "node index.js",
+    "start-all": "node index.js && node index.js --all",
+    "publish": "dot -Tsvg -o out/mohs.svg out/mohs.dot && dot -Tsvg -o out/mohs_all.svg out/mohs_all.dot"
   },
   "author": "Chris Thomas",
   "license": "ISC",
   "dependencies": {
-    "csv-parse": "^4.15.3"
+    "csv-parse": "^4.15.3",
+    "getopts": "^2.3.0",
+    "string-builder": "^0.1.8"
   }
 }

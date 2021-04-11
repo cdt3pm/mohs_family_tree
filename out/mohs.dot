@@ -1,4 +1,5 @@
 
+
 digraph "mohs" {
 	graph [
 		charset = "UTF-8";
@@ -25,8 +26,8 @@ digraph "mohs" {
 		color = lightgray,
 		fillcolor = lightgray,
 		fixedsize = true,
-		height = 0.6,
-		width = 2.5
+		height = 0.8,
+		width = 3.0
 	];
 
 	edge [
@@ -195,9 +196,9 @@ digraph "mohs" {
 	person153 [label = "Steven S. Greenbaum"];
 	person154 [label = "Susana Leal-Khouri"];
 	person155 [label = "Suzanne Olbricht"];
-	person156 [label = "Theodore A. Tromovitch"];
-	person157 [label = "Richard G. Glogau*"];
-	person158 [label = "Samuel J. Stegman*"];
+	person156 [label = "Richard G. Glogau*"];
+	person157 [label = "Samuel J. Stegman*"];
+	person158 [label = "Theodore A. Tromovitch"];
 	person159 [label = "Thomas E. Rohrer"];
 	person160 [label = "Thomas Stasko"];
 	person161 [label = "Timothy M. Johnson"];
@@ -252,7 +253,7 @@ digraph "mohs" {
 	person59 -> person3;
 	person59 -> person88;
 	person59 -> person125;
-	person59 -> person156;
+	person59 -> person158;
 	person59 -> person71;
 	person59 -> person61;
 	person59 -> person64;

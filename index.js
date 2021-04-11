@@ -1,11 +1,17 @@
 const parse = require('csv-parse');
 const fs = require('fs');
+const getopts = require('getopts');
+const StringBuilder = require('string-builder');
 
+const options = getopts(process.argv.slice(2), {
+  alias: { all: 'a' }
+});
 const personMap = {};
-const suffixes = [];
 const parser = parse({
 	  delimiter: ','
 });
+const fileSuffix = options.a ? '_all' : '';
+
 parser.on('readable', () => {
 	let record;
 
@@ -29,11 +35,16 @@ parser.on('readable', () => {
 });
 
 parser.on('end', () => {
-	const uniquePeople = {};
 	const personIdMap = {};
+	const fileName = `mohs${fileSuffix}`;
+	const sb = new StringBuilder();
 	let id = 0;
+	let mohsId;
+	let uniquePeople;
 
-	console.log(`
+	fs.writeFile(`out/${fileName}.json`, JSON.stringify(personMap, null, '\t'), () => {})
+
+	sb.appendLine(`
 digraph "mohs" {
 	graph [
 		charset = "UTF-8";
@@ -60,8 +71,8 @@ digraph "mohs" {
 		color = lightgray,
 		fillcolor = lightgray,
 		fixedsize = true,
-		height = 0.6,
-		width = 2.5
+		height = 0.8,
+		width = 3.0
 	];
 
 	edge [
@@ -75,23 +86,42 @@ digraph "mohs" {
 		labelangle = 70
 	];`);
 
-	// One node for each mentor
-	Object.keys(personMap).forEach(name => {
+	if (options.a) {
+		const uniquePersonMap = {};
+		Object.entries(personMap).forEach(([mentor, mentees]) => {
+			uniquePersonMap[mentor] = true;
+			mentees.forEach(mentee => {
+				uniquePersonMap[mentee] = true;
+			});
+		});
+		uniquePeople = Object.keys(uniquePersonMap);
+	}
+	else {
+		// Only care about mentors.
+		uniquePeople = Object.keys(personMap);
+	}
+
+	uniquePeople.forEach(name => {
 		const personId = `person${id++}`;
+
+		if (!mohsId && name === 'Frederic Mohs') {
+			mohsId = personId;
+		}
+
 		personIdMap[name] = personId;
-		console.log(`	${personId} [label = "${name}"];`);
+		sb.appendLine(`	${personId} [label = "${name}"];`);
 	});
 
 	Object.entries(personMap).forEach(([mentor, mentees]) => {
-		mentees
-			// Make sure mentee is also a mentor
-			.filter(mentee => !!personMap[mentee])
-			.forEach(mentee => {
-				console.log(`	${personIdMap[mentor]} -> ${personIdMap[mentee]};`);
-			});
+		const validMentees = options.a ? mentees : mentees.filter(mentee => !!personMap[mentee]);
+
+		validMentees.forEach(mentee => {
+			sb.appendLine(`	${personIdMap[mentor]} -> ${personIdMap[mentee]};`);
+		});
 	});
 
-	console.log('}');
+	sb.appendLine('}');
+	fs.writeFile(`out/${fileName}.dot`, sb.toString(), () => { })
 });
 
 fs.readFile('./data/Mohs.csv', 'utf8', (err, data) => {
