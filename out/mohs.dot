@@ -6,7 +6,7 @@ digraph "mohs" {
 		labelloc = "t",
 		labeljust = "c",
 		bgcolor = white
-		fontcolor = "#ffeb85",
+		fontcolor = "black",
 		fontsize = 24,
 		style = "filled",
 		rankdir = LR,
