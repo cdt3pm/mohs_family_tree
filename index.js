@@ -48,7 +48,7 @@ parser.on('end', () => {
 `digraph "mohs" {
 	graph [
 		charset = "UTF-8";
-		label = "Mohs Family Tree",
+		label = "Mohs Micrographic Surgery Family Tree",
 		labelloc = "t",
 		labeljust = "c",
 		bgcolor = white
