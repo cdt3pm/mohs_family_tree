@@ -197,8 +197,8 @@ digraph "mohs" {
 	person154 [label = "Susana Leal-Khouri"];
 	person155 [label = "Suzanne Olbricht"];
 	person156 [label = "Richard G. Glogau*"];
-	person157 [label = "Samuel J. Stegman*"];
-	person158 [label = "Theodore A. Tromovitch"];
+	person157 [label = "Theodore A. Tromovitch"];
+	person158 [label = "Samuel J. Stegman*"];
 	person159 [label = "Thomas E. Rohrer"];
 	person160 [label = "Thomas Stasko"];
 	person161 [label = "Timothy M. Johnson"];
@@ -253,7 +253,7 @@ digraph "mohs" {
 	person59 -> person3;
 	person59 -> person88;
 	person59 -> person125;
-	person59 -> person158;
+	person59 -> person157;
 	person59 -> person71;
 	person59 -> person61;
 	person59 -> person64;
