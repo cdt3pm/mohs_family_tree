@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-		"start": "node index.js"
+    "start": "node index.js > out/mohs.dot",
+    "publish": "dot -Tsvg -o out/mohs.svg out/mohs.dot"
   },
   "author": "Chris Thomas",
   "license": "ISC",
