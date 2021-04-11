@@ -1,0 +1,15 @@
+{
+  "name": "mohs",
+  "version": "1.0.0",
+  "description": "Small csv parser for Doug",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+		"start": "node index.js"
+  },
+  "author": "Chris Thomas",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parse": "^4.15.3"
+  }
+}
