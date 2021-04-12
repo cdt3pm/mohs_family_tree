@@ -7,7 +7,8 @@
     "test": "test",
     "start": "node index.js",
     "start-all": "node index.js && node index.js --all",
-    "publish": "twopi -Tsvg -o./out/mohs.svg out/mohs.dot && twopi -Tsvg -o./out/mohs_all.svg out/mohs_all.dot"
+    "publish": "dot -Tsvg -o ./out/mohs.svg out/mohs.dot && dot -Tsvg -o ./out/mohs_all.svg out/mohs_all.dot" ,
+    "publish-hyper": "twopi -Tsvg -o./out/mohs-hyper.svg out/mohs.dot && twopi -Tsvg -o./out/mohs_all_hyper.svg out/mohs_all.dot"
   },
   "author": "Chris Thomas",
   "license": "ISC",
