@@ -7,26 +7,26 @@ digraph "mohs" {
 		labeljust = "c",
 		bgcolor = white
 		fontcolor = "black",
-		fontsize = 24,
+		fontsize = 36,
 		style = "filled",
 		rankdir = LR,
 		margin = 0.2,
 		splines = spline,
-		ranksep = 0.8,
-		nodesep = 0.1
+		ranksep = 1.2,
+		nodesep = 0.8
 	];
 
 	node [
 		colorscheme = "rdylgn11"
 		style = "solid,filled",
-		fontsize = 16,
+		fontsize = 8,
 		fontcolor = "#ffeb85",
 		fontname = "Migu 1M",
 		color = 7,
 		fillcolor = 11,
 		fixedsize = true,
-		height = 0.8,
-		width = 3.0
+		height = .3,
+		width = 1
 	];
 
 	edge [
