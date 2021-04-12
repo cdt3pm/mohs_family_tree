@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node index.js",
-    "start-all": "node index.js && node index.js --all",
-    "publish": "dot -Tsvg -o ./out/mohs.svg out/mohs.dot && dot -Tsvg -o ./out/mohs_all.svg out/mohs_all.dot" ,
-    "publish-hyper": "twopi -Tsvg -o./out/mohs-hyper.svg out/mohs.dot && twopi -Tsvg -o./out/mohs_all_hyper.svg out/mohs_all.dot"
+    "start-dot": "node index.js && node index.js --all && npm run publish",
+    "start-hyper": "node index.js -c hyper && node index.js --all -c hyper && npm run publish-hyper",
+    "publish": "dot -Tsvg -o ./out/mohs_dot.svg out/mohs_dot.dot && dot -Tsvg -o ./out/mohs_all_dot.svg out/mohs_all_dot.dot" ,
+    "publish-hyper": "twopi -Tsvg -o./out/mohs_hyper.svg out/mohs_hyper.dot && twopi -Tsvg -o./out/mohs_all_hyper.svg out/mohs_all_hyper.dot"
   },
   "author": "Chris Thomas",
   "license": "ISC",

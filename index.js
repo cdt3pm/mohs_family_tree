@@ -4,12 +4,13 @@ const getopts = require('getopts');
 const StringBuilder = require('string-builder');
 
 const options = getopts(process.argv.slice(2), {
-  alias: { all: 'a' }
+  alias: { all: 'a', config: 'c' }
 });
 const personMap = {};
 const parser = parse({
 	  delimiter: ','
 });
+const config = options.config || 'dot';
 const fileSuffix = options.a ? '_all' : '';
 
 parser.on('readable', () => {
@@ -44,84 +45,48 @@ parser.on('end', () => {
 
 	fs.writeFile(`out/${fileName}.json`, JSON.stringify(personMap, null, '\t'), () => {})
 
-	sb.appendLine(
-`digraph "mohs" {
-	graph [
-		charset = "UTF-8";
-		label = "Mohs Micrographic Surgery Family Tree",
-		labelloc = "t",
-		labeljust = "c",
-		bgcolor = white
-		fontcolor = "black",
-		fontsize = 36,
-		style = "filled",
-		rankdir = LR,
-		margin = 0.2,
-		splines = spline,
-		ranksep = 0.7,
-		nodesep = 0.1
-	];
+	sb.appendLine('digraph "mohs" {');
+	const configFile = `./config/${config}`;
+	fs.readFile(configFile, 'utf8', (_, data) => {
+		sb.appendLine(data);
 
-	node [
-		colorscheme = "rdylgn11"
-		style = "solid,filled",
-		fontsize = 8,
-		fontcolor = "#ffeb85",
-		fontname = "Migu 1M",
-		color = 7,
-		fillcolor = 11,
-		fixedsize = true,
-		height = .4,
-		width = 1.2
-	];
-
-	edge [
-		style = solid,
-		fontsize = 14,
-		fontcolor = white,
-		fontname = "Migu 1M",
-		color = black,
-		labelfloat = true,
-		labeldistance = 2.5,
-		labelangle = 70
-	];`);
-
-	if (options.a) {
-		const uniquePersonMap = {};
-		Object.entries(personMap).forEach(([mentor, mentees]) => {
-			uniquePersonMap[mentor] = true;
-			mentees.forEach(mentee => {
-				uniquePersonMap[mentee] = true;
+		if (options.a) {
+			const uniquePersonMap = {};
+			Object.entries(personMap).forEach(([mentor, mentees]) => {
+				uniquePersonMap[mentor] = true;
+				mentees.forEach(mentee => {
+					uniquePersonMap[mentee] = true;
+				});
 			});
-		});
-		uniquePeople = Object.keys(uniquePersonMap);
-	}
-	else {
-		// Only care about mentors.
-		uniquePeople = Object.keys(personMap);
-	}
-
-	uniquePeople.forEach(name => {
-		const personId = `person${id++}`;
-
-		if (!mohsId && name === 'Frederic Mohs') {
-			mohsId = personId;
+			uniquePeople = Object.keys(uniquePersonMap);
+		}
+		else {
+			// Only care about mentors.
+			uniquePeople = Object.keys(personMap);
 		}
 
-		personIdMap[name] = personId;
-		sb.appendLine(`	${personId} [label = "${name}"];`);
-	});
+		uniquePeople.forEach(name => {
+			const personId = `person${id++}`;
 
-	Object.entries(personMap).forEach(([mentor, mentees]) => {
-		const validMentees = options.a ? mentees : mentees.filter(mentee => !!personMap[mentee]);
+			if (!mohsId && name === 'Frederic Mohs') {
+				mohsId = personId;
+			}
 
-		validMentees.forEach(mentee => {
-			sb.appendLine(`	${personIdMap[mentor]} -> ${personIdMap[mentee]};`);
+			personIdMap[name] = personId;
+			sb.appendLine(`	${personId} [label = "${name}"];`);
 		});
-	});
 
-	sb.appendLine('}');
-	fs.writeFile(`out/${fileName}.dot`, sb.toString(), () => { })
+		Object.entries(personMap).forEach(([mentor, mentees]) => {
+			const validMentees = options.a ? mentees : mentees.filter(mentee => !!personMap[mentee]);
+
+			validMentees.forEach(mentee => {
+				sb.appendLine(`	${personIdMap[mentor]} -> ${personIdMap[mentee]};`);
+			});
+		});
+
+		sb.appendLine('}');
+		fs.writeFile(`out/${fileName}_${config}.dot`, sb.toString(), () => { })
+	});
 });
 
 fs.readFile('./data/Mohs.csv', 'utf8', (err, data) => {

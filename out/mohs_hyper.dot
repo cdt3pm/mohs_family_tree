@@ -1,6 +1,6 @@
 
 digraph "mohs" {
-	graph [
+    graph [
 		charset = "UTF-8";
 		label = "Mohs Micrographic Surgery Family Tree",
 		labelloc = "t",
@@ -12,21 +12,22 @@ digraph "mohs" {
 		rankdir = LR,
 		margin = 0.2,
 		splines = spline,
-		ranksep = 0.7,
-		nodesep = 0.1
+		ranksep = 1.5,
+		nodesep = 2.0
 	];
 
 	node [
 		colorscheme = "rdylgn11"
 		style = "solid,filled",
-		fontsize = 8,
-		fontcolor = "#ffeb85",
+		fontsize = 6,
+        fontcolor = black,
+		//fontcolor = "#ffeb85",
 		fontname = "Migu 1M",
-		color = 7,
-		fillcolor = 11,
+		color = white,
+		fillcolor = white,
 		fixedsize = true,
-		height = .4,
-		width = 1.2
+		height = .1,
+		width = .5
 	];
 
 	edge [
@@ -39,6 +40,7 @@ digraph "mohs" {
 		labeldistance = 2.5,
 		labelangle = 70
 	];
+
 	person0 [label = "Abel Torres"];
 	person1 [label = "Alastair Carruthers"];
 	person2 [label = "Alexandra Zhang"];

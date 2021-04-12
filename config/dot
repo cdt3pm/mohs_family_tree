@@ -1,0 +1,39 @@
+    graph [
+		charset = "UTF-8";
+		label = "Mohs Micrographic Surgery Family Tree",
+		labelloc = "t",
+		labeljust = "c",
+		bgcolor = white
+		fontcolor = "black",
+		fontsize = 36,
+		style = "filled",
+		rankdir = LR,
+		margin = 0.2,
+		splines = spline,
+		ranksep = 0.7,
+		nodesep = 0.1
+	];
+
+	node [
+		colorscheme = "rdylgn11"
+		style = "solid,filled",
+		fontsize = 8,
+		fontcolor = "#ffeb85",
+		fontname = "Migu 1M",
+		color = 7,
+		fillcolor = 11,
+		fixedsize = true,
+		height = .4,
+		width = 1.2
+	];
+
+	edge [
+		style = solid,
+		fontsize = 14,
+		fontcolor = white,
+		fontname = "Migu 1M",
+		color = black,
+		labelfloat = true,
+		labeldistance = 2.5,
+		labelangle = 70
+	];
