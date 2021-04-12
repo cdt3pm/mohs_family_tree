@@ -58,8 +58,8 @@ parser.on('end', () => {
 		rankdir = LR,
 		margin = 0.2,
 		splines = spline,
-		ranksep = 1.2,
-		nodesep = 0.8
+		ranksep = 0.7,
+		nodesep = 0.1
 	];
 
 	node [
@@ -71,8 +71,8 @@ parser.on('end', () => {
 		color = 7,
 		fillcolor = 11,
 		fixedsize = true,
-		height = .3,
-		width = 1
+		height = .4,
+		width = 1.2
 	];
 
 	edge [
