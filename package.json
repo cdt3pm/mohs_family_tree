@@ -2,12 +2,12 @@
   "name": "mohs",
   "version": "1.0.0",
   "description": "Small csv parser for Doug",
-  "main": "index.js",
+  "main": "diagram.js",
   "scripts": {
     "test": "test",
-    "start-dot": "node index.js && node index.js --all && npm run publish",
-    "start-hyper": "node index.js -c hyper && node index.js --all -c hyper && npm run publish-hyper",
-    "publish": "dot -Tsvg -o ./out/mohs_dot.svg out/mohs_dot.dot && dot -Tsvg -o ./out/mohs_all_dot.svg out/mohs_all_dot.dot" ,
+    "dot": "node diagram.js && node diagram.js --all && npm run publish-dot",
+    "hyper": "node diagram.js -c hyper && node diagram.js --all -c hyper && npm run publish-hyper",
+    "publish-dot": "dot -Tsvg -o ./out/mohs_dot.svg out/mohs_dot.dot && dot -Tsvg -o ./out/mohs_all_dot.svg out/mohs_all_dot.dot" ,
     "publish-hyper": "twopi -Tsvg -o./out/mohs_hyper.svg out/mohs_hyper.dot && twopi -Tsvg -o./out/mohs_all_hyper.svg out/mohs_all_hyper.dot"
   },
   "author": "Chris Thomas",
