@@ -65,6 +65,8 @@ parser.on('end', () => {
 			uniquePeople = Object.keys(personMap);
 		}
 
+		console.log(`Total unique ${options.all ? 'people' : 'mentors'}: ${Object.keys(uniquePeople).length}`);
+
 		uniquePeople.forEach(name => {
 			const personId = `person${id++}`;
 
